@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: grey;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column; 
+  position: absolute; 
+  top: 100px;
+  left: 0; 
+  right: 0; 
+  margin-inline: auto; 
+  width: fit-content;
+  background-color: white;
+  border-radius: 10px;
+  height: 700px;
+  padding: 2% 2% 1% 2%;
+}
+
+.container-testo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgrey;
+  padding: 1% 2%;
+  height: 75px;
+  flex-wrap: nowrap;
+  text-align: center;
+  border-radius: 10px;
+
+}
+
+.container-testo h1 {
+  margin: 0 1% 0 1%;
+  text-wrap: nowrap;
+}
+
+.display-risultato {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  background-color: lightblue;
+  width: 100%;
+  border-radius: 10px;
+  padding: 1% 2%;
+  margin: 2% 0% 1% 0%;
+  height: 60px;
+  font-size: 24px
+}
+
+.griglia-tasti{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 10px;
+  height: 100%;
+}
