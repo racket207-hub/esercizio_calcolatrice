@@ -17,11 +17,50 @@ wrapper.addEventListener('click', (event) => {
 // Posted by Scott Strauss, modified by community. See post 'Timeline' for change history
 // Retrieved 2025-12-10, License - CC BY-SA 4.0
 
-var buttons = document.querySelectorAll(".calculator-btn").length;
-var risulato_display = document.getElementById('risultato');
+/* let buttons = document.querySelectorAll(".calculator-btn").length;
+let risulato_display = document.getElementById('risultato');
+let current_value = "";
+
 
 for (var i = 0; i < buttons ; i++) {
     document.querySelectorAll(".calculator-btn")[i].addEventListener("click", function() {
-        risulato_display.innerText = this.innerHTML
+        current_value = current_value + this.innerHTML
+        risulato_display.innerText = current_value;
     });
+} */
+
+const button_count = document.getElementsByClassName('calculator-btn').length;
+let risultato_display = document.getElementById('risultato');
+let current_value = "";
+
+for(let i = 0; i < button_count; i++) {
+    let buttons = document.getElementsByClassName('calculator-btn')[i];
+    buttons.addEventListener("click", function() {
+        button_id = this.id;
+        switch(button_id) {
+            case "b0":
+            case "b1":
+            case "b2":
+            case "b3":
+            case "b4":
+            case "b5":
+            case "b6":
+            case "b7":
+            case "b8":
+            case "b9":
+            case "b10":
+            case "b_add":
+            case "b_subtract":
+            case "b_multiply":
+            case "b_divide":
+                current_value = current_value + this.innerHTML;
+                risultato_display.innerText = current_value;
+                break;
+        }
+    })
+}
+
+
+function operations(btn_id, a, b) {
+    return a + b
 }
