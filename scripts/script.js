@@ -34,6 +34,11 @@ let risultato_display = document.getElementById('risultato');
 let current_value = "";
 
 for(let i = 0; i < button_count; i++) {
+    onClick(i, risultato_display, current_value)
+}
+
+
+function onClick(i){
     let buttons = document.getElementsByClassName('calculator-btn')[i];
     buttons.addEventListener("click", function() {
         button_id = this.id;
@@ -56,11 +61,34 @@ for(let i = 0; i < button_count; i++) {
                 current_value = current_value + this.innerHTML;
                 risultato_display.innerText = current_value;
                 break;
+            case "b_uguale":
+                /* current_value = eval(current_value);
+                risultato_display.innerText = current_value; */
+                current_value = calcolaRisultato(current_value);
+                risultato_display.innerText = current_value;
+                break;
+            case "b_elevazione":
+                current_value = current_value + this.innerHTML;
+                risultato_display.innerText = current_value;
+                break;
+            case "b_cancella":
+                current_value = "";
+                risultato_display.innerText = current_value;
+                break;
         }
     })
 }
 
+/* function potenza(b, e) {
+    for (let i = 0; i < e; i++) {
+        b = b * b;
+    }
+} */
 
-function operations(btn_id, a, b) {
-    return a + b
+function calcolaRisultato(current_value) {
+    if (current_value.includes("^")) {
+        current_value = current_value.replace('^', '**')
+    }
+
+    return eval(current_value)
 }

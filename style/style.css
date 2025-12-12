@@ -16,7 +16,7 @@
 }
 
 body {
-  background-color: grey;
+  background-color: var(--frozen-water);
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
 }
