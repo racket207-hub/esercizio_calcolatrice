@@ -1,21 +1,20 @@
-const button_count = document.getElementsByClassName('calculator-btn').length;
-let risultato_display = document.getElementById('risultato');
-let current_value = "";
-/* const numeroPattern = "[√?][[1-9]*[^*+\/\-^]";
-const numeroPatternRegex = new RegExp(numeroPattern); */
-const numeroPattern = "√[0-9]+"
+const button_count = document.getElementsByClassName('calculator-btn').length; //variabile per contare il numero di bottoni presenti nella calcolatrice
+let risultato_display = document.getElementById('risultato'); //variabile per memorizzare il display della calcolatrice
+let current_value = "0";
+const numeroPattern = "√[0-9]+g"
 const numeroPatternRegex = new RegExp(numeroPattern);
  
-
+//funzione per assegnare tutti gli event listener ai bottoni della calcolatrice
 for(let i = 0; i < button_count; i++) {
     onClick(i, risultato_display, current_value)
 }
 
-
+//funzione per controllare i tasti premuti sulla calcolatrice
 function onClick(i){
     let buttons = document.getElementsByClassName('calculator-btn')[i];
     buttons.addEventListener("click", function() {
-        button_id = this.id;
+        button_id = this.id; //variabile per memorizzare l'id del bottone premuto
+        //switch per controllare quale bottone è stato premuto
         switch(button_id) {
             case "b0":
             case "b1":
@@ -32,44 +31,40 @@ function onClick(i){
             case "b_subtract":
             case "b_multiply":
             case "b_divide":
-                current_value = current_value + this.innerHTML;
-                risultato_display.innerText = current_value;
-                break;
-            case "b_uguale":
-                current_value = calcolaRisultato(current_value);
-                risultato_display.innerText = current_value;
-                break;
             case "b_elevazione":
-                current_value = current_value + this.innerHTML;
-                risultato_display.innerText = current_value;
-                break;
             case "b_radice":
-                current_value = current_value + this.innerHTML;
+                current_value = current_value === "0" ? "" : current_value; //ternary operator per evitare che al primo inserimento rimanga lo zero iniziale
+                current_value = current_value + this.innerHTML; //aggiunta del valore del bottone premuto a current_value
+                risultato_display.innerText = current_value; //aggiornamento del dispaly con il nuovo current_value
+                break; 
+            case "b_uguale":
+                current_value = calcolaRisultato(current_value); //chiamata della funzione per calcolare il risultato
                 risultato_display.innerText = current_value;
                 break;
             case "b_cancella":
-                current_value = "";
+                current_value = "0";
                 risultato_display.innerText = current_value;
                 break;
         }
     })
 }
 
+//funzione per calcolare il risultato
 function calcolaRisultato(current_value) {
-    /* const radice = numeroPatternRegex.match(current_value) */
-    const numero = current_value.match(numeroPatternRegex)
-    let radice_calcolata;
+
+    let radice_calcolata; //variabile per memorizzare il risultato della radice
+    const numero = current_value.match(/√[0-9]+/gm) //variabile per memorizzare le istanze di radici presenti in current_value
+
+    //if che controlla se è presenta una potenza o radice ed effettua le sostituzioni necessarie per poter calcolare il risultato
     if (current_value.includes("^")) {
         current_value = current_value.replace('^', '**')
     }else if(current_value.includes("√")) {
         for(let i = 0; i < numero.length; i++){
-            /* current_value = current_value.replace(numeroPatternRegex, numero[0].replace("√", "Math.sqrt"), numero[1]) */
-                current_value = Math.sqrt(numero[i].replace("√", ""))
-                current_value = current_value.toString();
+                radice_calcolata = Math.sqrt(numero[i].replace("√", ""))
+                current_value = current_value.replace(/√[0-9]+/gm, radice_calcolata)
         }
     }
 
+    //ritorno di current_value calcolato tramite eval
     return eval(current_value)
 }
-
-console.log(Math.sqrt(4))
