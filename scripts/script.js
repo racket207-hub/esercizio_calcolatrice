@@ -1,37 +1,11 @@
-//fare uno switch case per ogni bottone --idea
-
-/* var buttons = document.getElementsByClassName('calculator-btn');
-var risulato_display = document.getElementById('risultato');
-
-document.getElementsByClassName('buttons').addEventListener('click', () => {
-    risultato_display.innerText = buttons.innerHTML;
-}) */
-
-/* const wrapper = document.getElementById('griglia-tasti');
-
-wrapper.addEventListener('click', (event) => {
-
-}) */
-
-// Source - https://stackoverflow.com/a
-// Posted by Scott Strauss, modified by community. See post 'Timeline' for change history
-// Retrieved 2025-12-10, License - CC BY-SA 4.0
-
-/* let buttons = document.querySelectorAll(".calculator-btn").length;
-let risulato_display = document.getElementById('risultato');
-let current_value = "";
-
-
-for (var i = 0; i < buttons ; i++) {
-    document.querySelectorAll(".calculator-btn")[i].addEventListener("click", function() {
-        current_value = current_value + this.innerHTML
-        risulato_display.innerText = current_value;
-    });
-} */
-
 const button_count = document.getElementsByClassName('calculator-btn').length;
 let risultato_display = document.getElementById('risultato');
 let current_value = "";
+/* const numeroPattern = "[√?][[1-9]*[^*+\/\-^]";
+const numeroPatternRegex = new RegExp(numeroPattern); */
+const numeroPattern = "√[0-9]+"
+const numeroPatternRegex = new RegExp(numeroPattern);
+ 
 
 for(let i = 0; i < button_count; i++) {
     onClick(i, risultato_display, current_value)
@@ -62,12 +36,14 @@ function onClick(i){
                 risultato_display.innerText = current_value;
                 break;
             case "b_uguale":
-                /* current_value = eval(current_value);
-                risultato_display.innerText = current_value; */
                 current_value = calcolaRisultato(current_value);
                 risultato_display.innerText = current_value;
                 break;
             case "b_elevazione":
+                current_value = current_value + this.innerHTML;
+                risultato_display.innerText = current_value;
+                break;
+            case "b_radice":
                 current_value = current_value + this.innerHTML;
                 risultato_display.innerText = current_value;
                 break;
@@ -79,16 +55,21 @@ function onClick(i){
     })
 }
 
-/* function potenza(b, e) {
-    for (let i = 0; i < e; i++) {
-        b = b * b;
-    }
-} */
-
 function calcolaRisultato(current_value) {
+    /* const radice = numeroPatternRegex.match(current_value) */
+    const numero = current_value.match(numeroPatternRegex)
+    let radice_calcolata;
     if (current_value.includes("^")) {
         current_value = current_value.replace('^', '**')
+    }else if(current_value.includes("√")) {
+        for(let i = 0; i < numero.length; i++){
+            /* current_value = current_value.replace(numeroPatternRegex, numero[0].replace("√", "Math.sqrt"), numero[1]) */
+                current_value = Math.sqrt(numero[i].replace("√", ""))
+                current_value = current_value.toString();
+        }
     }
 
     return eval(current_value)
 }
+
+console.log(Math.sqrt(4))
