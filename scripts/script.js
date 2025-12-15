@@ -6,7 +6,7 @@ const numeroPatternRegex = new RegExp(numeroPattern);
  
 //funzione per assegnare tutti gli event listener ai bottoni della calcolatrice
 for(let i = 0; i < button_count; i++) {
-    onClick(i, risultato_display, current_value)
+    onClick(i)
 }
 
 //funzione per controllare i tasti premuti sulla calcolatrice
