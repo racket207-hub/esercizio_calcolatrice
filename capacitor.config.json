@@ -1,0 +1,8 @@
+{
+  "appId": "com.example.app",
+  "appName": "Branchina Calculator",
+  "webDir": "index.html",
+  "server": {
+    "url": "http://127.0.0.1:5500/index.html"
+  }
+}
