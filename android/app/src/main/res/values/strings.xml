@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Branchina Calculator</string>
+    <string name="title_activity_main">Branchina Calculator</string>
+    <string name="package_name">com.rocco.app</string>
+    <string name="custom_url_scheme">com.rocco.app</string>
+</resources>
