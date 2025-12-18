@@ -45,6 +45,11 @@ function onClick(i){
                 current_value = "0";
                 risultato_display.innerText = current_value;
                 break;
+            case "b_cancella_ultimo":
+                current_value = current_value.slice(0, -1)
+                current_value = current_value === "" ? "0" : current_value;
+                risultato_display.innerText = current_value
+                break;
         }
     })
 }
@@ -61,7 +66,7 @@ function calcolaRisultato(current_value) {
     }else if(current_value.includes("√")) {
         for(let i = 0; i < numero.length; i++){
                 radice_calcolata = Math.sqrt(numero[i].replace("√", ""))
-                current_value = current_value.replace(/√[0-9]+/gm, radice_calcolata)
+                current_value = current_value.replace(numero[i], radice_calcolata)
         }
     }
 
