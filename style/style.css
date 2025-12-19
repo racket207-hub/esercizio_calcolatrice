@@ -27,7 +27,7 @@ body {
   display: flex;
   flex-direction: column; 
   position: absolute; 
-  top: 80px;
+  top: 120px;
   left: 0; 
   right: 0; 
   margin-inline: auto; 
@@ -128,4 +128,43 @@ body {
 
   .uguale:active{
   background-color: oklch(from var(--grey-blue) calc(l/2 + .32) c h);
+ }
+
+ .download {
+  display: flex;
+  background-color: var(--slate-indigo);
+  align-items: center;
+  justify-content: center;
+  transition: all 1s;
+  padding: 10px;
+ }
+
+ .download a{
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  width: 250px;
+  padding: 0.5% 0%;
+  background-color: var(--charcoal);
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: all 0.7s;
+ }
+
+ .download:hover {
+  padding: 20px;
+ }
+
+ .download a:hover{
+  background-color: oklch(from var(--charcoal) calc(l/2 + .25) c h);
+  transform: scale(1.04);
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 7px 29px 0px;
+  transition: all 0.7s;
+ }
+
+ .download a:active {
+  background-color: oklch(from var(--charcoal) calc(l/2 + .22) c h);
+  transform: scale(1.00);
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 5px 19px 0px;
  }
