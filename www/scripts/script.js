@@ -39,7 +39,7 @@ function onClick(i){
                 break; 
             case "b_uguale":
                 current_value = calcolaRisultato(current_value); //chiamata della funzione per calcolare il risultato
-                risultato_display.innerText = current_value;
+                risultato_display.innerText = current_value
                 break;
             case "b_cancella":
                 current_value = "0";
@@ -71,12 +71,22 @@ function calcolaRisultato(current_value) {
     }
 
     //ritorno di current_value calcolato tramite eval
-    return eval(current_value)
+    current_value = eval(current_value)
+
+    if(String(current_value).match(/^[0-9]+[.]+[1-9]*/gm)) {
+        current_value = current_value.toFixed(2)
+        console.log(current_value)
+    }
+
+    return current_value
+
+
+    
 }
 
 function controlloEspressione(current_value, value) {
     current_value += value; //aggiunta del valore del bottone premuto a current_value
-    if(current_value.match(/^[*.\/^]/gm)) {
+    if(current_value.match(/^[*\/^]/gm)) {
         return current_value = "0"
     }else if(current_value.match(/([+\-\/*^][√?])([1-9])|([+\-\/*^][√?])/gm)){
         if(current_value.match(/√[+\-\/*^.√]/gm)){
