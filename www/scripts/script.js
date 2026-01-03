@@ -26,7 +26,6 @@ function onClick(i){
             case "b7":
             case "b8":
             case "b9":
-            case "b10":
             case "b_add":
             case "b_subtract":
             case "b_multiply":
@@ -34,6 +33,10 @@ function onClick(i){
             case "b_elevazione":
             case "b_radice":
                 current_value = current_value === "0" ? "" : current_value; //ternary operator per evitare che al primo inserimento rimanga lo zero iniziale
+                current_value = controlloEspressione(current_value, this.innerHTML)
+                risultato_display.innerText = current_value; //aggiornamento del dispaly con il nuovo current_value
+                break;
+            case "b10":
                 current_value = controlloEspressione(current_value, this.innerHTML)
                 risultato_display.innerText = current_value; //aggiornamento del dispaly con il nuovo current_value
                 break; 
